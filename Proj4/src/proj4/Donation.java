@@ -1,0 +1,67 @@
+package proj4;
+
+/************************************************************/
+/* Alex Schoonover                                          */
+/* Login ID: scho9419                                       */
+/* CS-102, Winter 2018                                      */
+/* Programming Assignment 3                                 */
+/* Donation Class: informatin about donations and dates     */
+/************************************************************/
+import java.lang.*;
+import java.time.LocalDate;
+
+public class Donation
+{ //Donation class
+   String ID; 
+   LocalDate date;  
+   
+   
+   public Donation(String ID, LocalDate date) {//Donation
+      this.ID = ID; 
+      this.date = date; 
+   }//end Donation
+   
+   public String getID() { return ID; }
+   public LocalDate getDate(){  return date; }
+   
+/****************************************************************/
+/*Method: equalTo                                               */
+/*Purpose: Checks to see if dates are the same                  */
+/*                                                              */
+/*      Parameters: Donation item                               */
+/*      Return: boolean                                         */
+/****************************************************************/
+   public boolean equalTo(Donation item){ 
+      if(this.date.compareTo(item.getDate()) == 0) //if dates are the same
+      return true; //returns true  
+      
+      else //if the dates are not the same
+      return false; //returns false
+   }
+   
+   public String toString(){//start toString
+      String str = ""; //creates an empty string
+      str += ID + " " + date + " ";
+      
+      return str; //returns string to be printed
+   }//end toString
+   
+   public String toSave(){
+       String str = ID+ "/" + date.getYear(); 
+       
+       if(date.getMonthValue() <= 9){
+           str += "0"+ date.getMonthValue();
+       }
+       else {
+           str += date.getMonthValue(); 
+       }
+       if(date.getDayOfMonth() <= 9){
+           str+= "0"+date.getDayOfMonth(); 
+       }
+       else {
+           str+= date.getDayOfMonth(); 
+       }
+       
+       return str; 
+   }
+} //end Donation class
