@@ -50,42 +50,34 @@ public class LinkedList
    {// begin add()
       Node current = head; 
       Node previous = null; 
-      if(current == null)//if the list is empty
-        head = item; //make head
+      if(current == null){//if the list is empty
+         head = item; //make head   
+         return; 
+      }
       while(current != null)
        {
            if(item.getDatum().getDate().isAfter(current.getDatum().getDate())){
-                if(item.getDatum().getDate().isBefore(current.getNext().getDatum().getDate())){
-                if(previous != null){
-                    item.setNext(current); 
-                    previous.setNext(item); 
-                    return; 
-                }
-                else {
-                    item.setNext(current);
-                     head = item; 
-                    return; 
-                }
+               if(previous == null){
+                   item.setNext(current);
+                   head = item; 
+                   return; 
+               }
+               else {
+                   item.setNext(current);
+                   previous.setNext(item);
+                   return; 
+                   
+               }
+  
            }
-               
-            }
-            else {
-                previous = current; 
-                current = current.getNext();
-            }
-           
-        if(previous == null){
-            head = item;  
-            return; 
-            }
-        else {
-            item.setNext(current);
-            previous.setNext(item);
-            return; 
-        }                
-        
-         
-      }//end while
+           else{
+               previous = current; 
+               current = current.getNext(); 
+           }   
+       }//end while
+      if(previous != null)
+        previous.setNext(item);
+      
    }//end add()
 public void printDonations(){
     Node current = head; 
